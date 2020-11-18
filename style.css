@@ -1,0 +1,38 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: content-box;
+}
+#groupes {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100vw;
+}
+.groupe{
+    border-radius: 5px;
+    width: auto;
+    background: #fafafa;
+    padding: 15px;
+    margin: 10px;
+    text-align: center;
+}
+.groupe > h2 {
+    background: #2FB8AC;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+}
+.membres {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+.eleve {
+    margin: 0 10px;
+}
+.eleve > img {
+    width: 80px;
+}
+.invisible{
+    display: none;
+}
