@@ -1,35 +1,35 @@
 //* TABLEAU DES APPRENANTS
 const eleves = [{
     "prenom" : "Thierry",
-    "avatar" : "https://icotar.com/avatar/thierry.svg"
+    "avatar" : "img/thierry.jpg"
 },
 {
     "prenom" : "Lazare",
-    "avatar" : "https://icotar.com/avatar/lazare.svg"
+    "avatar" : "img/lazare.jpg"
 },
 {
     "prenom" : "Nassim",
-    "avatar" : "https://icotar.com/avatar/nassim.svg"
+    "avatar" : "img/nassim.jpg"
 },
 {
     "prenom" : "Ivan",
-    "avatar" : "https://icotar.com/avatar/ivan.svg"
+    "avatar" : "img/ivan.jpg"
 },
 {
     "prenom" : "Claude",
-    "avatar" : "https://icotar.com/avatar/claude.svg"
+    "avatar" : "img/claude.jpg"
 },
 {
     "prenom" : "Gabriel",
-    "avatar" : "https://icotar.com/avatar/gabriel.svg"
+    "avatar" : "img/gabriel.jpg"
 },
 {
     "prenom" : "Amina",
-    "avatar" : "https://icotar.com/avatar/amina.svg"
+    "avatar" : "img/amina.png"
 },
 {
     "prenom" : "Halima",
-    "avatar" : "https://icotar.com/avatar/halima.svg"
+    "avatar" : "img/lima.jpg"
 },
 {
     "prenom" : "Yang",
@@ -37,31 +37,31 @@ const eleves = [{
 },
 {
     "prenom" : "Huong",
-    "avatar" : "https://icotar.com/avatar/huong.svg"
+    "avatar" : "img/le.JPG"
 },
 {
     "prenom" : "Aymen",
-    "avatar" : "https://icotar.com/avatar/aymen.svg"
+    "avatar" : "img/aymen.jpg"
 },
 {
     "prenom" : "Harris",
-    "avatar" : "https://icotar.com/avatar/harris.svg"
+    "avatar" : "img/harris.jpg"
 },
 {
     "prenom" : "Mathias",
-    "avatar" : "https://icotar.com/avatar/mathias.svg"
+    "avatar" : "img/mathias.png"
 },
 {
     "prenom" : "Bagrat",
-    "avatar" : "https://icotar.com/avatar/bagrat.svg"
+    "avatar" : "img/Bagrat.jpg"
 },
 {
     "prenom" : "Adam",
-    "avatar" : "https://icotar.com/avatar/adam.svg"
+    "avatar" : "img/adam.jpg"
 },
 {
     "prenom" : "Inès",
-    "avatar" : "https://icotar.com/avatar/ines.svg"
+    "avatar" : "img/ines.png"
 },
 {
     "prenom" : "Seif",
@@ -69,15 +69,15 @@ const eleves = [{
 },
 {
     "prenom" : "Mathieu",
-    "avatar" : "https://icotar.com/avatar/mathieu.svg"
+    "avatar" : "img/mathieu.jpg"
 },
 {
     "prenom" : "Laetitia",
-    "avatar" : "https://icotar.com/avatar/laetitia.svg"
+    "avatar" : "img/laetitia.jpg"
 },
 {
     "prenom" : "Juliette",
-    "avatar" : "https://icotar.com/avatar/juliette.svg"
+    "avatar" : "img/juliette.jpg"
 },
 {
     "prenom" : "Jean-Emmanuel",
@@ -85,15 +85,15 @@ const eleves = [{
 },
 {
     "prenom" : "Ida",
-    "avatar" : "https://icotar.com/avatar/ida.svg"
+    "avatar" : "img/ida.jpg"
 },
 {
     "prenom" : "Benn",
-    "avatar" : "https://icotar.com/avatar/benn.svg"
+    "avatar" : "img/ben.jpg"
 },
 {
     "prenom" : "Abdulrahman",
-    "avatar" : "https://icotar.com/avatar/rahman.svg"
+    "avatar" : "img/abdul.jpg"
 }
 ];
 
