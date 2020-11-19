@@ -180,8 +180,8 @@ const inputNombreSaisi = document.querySelector("#nbreSaisi"); // je stocke l'em
 // j'affiche dynamiquement le nombre d'élèves du tableau et les instructions.
 const nbreElevesDansLaClasse = document.querySelector("#nbreElevesClasse").innerHTML = `Il y a <strong>${eleves.length} élèves</strong> dans la classe. Saisi un nombre <strong>entre 2 et ${eleves.length / 2}</strong> stp.`;
 
-// Quand je clique sur le bouton pour générer des groupes en récupérant le chiffre saisi dans l'input
-recupBouton.addEventListener("click", () => {
+// AFFICHAGE DES GROUPES
+const groupe = () => {
 
     // je change la classe de mon input + bouton à "invisible" et je fais apparaitre le bouton de reload
     boutonReload.classList.toggle("invisible");
@@ -191,54 +191,57 @@ recupBouton.addEventListener("click", () => {
     // je transforme en INT le nombre saisi dans le input
     const recupNbreGroupe = parseInt(inputNombreSaisi.value);
 
-    // AFFICHAGE DES GROUPES
-    const groupe = () => {
-        // VARIABLE CONTENANT LE NOMBRE DE GROUPE CALCULE SELON LE NOMBRE D'ELEVES TOTAL DIVISE PAR LE NOMBRE D'ELEVES SOUHAITES DANS LE GROUPE PAR L'UTILISATEUR (input dans le HTML)
-        const combienDeGroupes = (Math.floor(nbre / recupNbreGroupe));
-        
-        //* JE VERIFIE QUE LES VALEURS SAISIES SONT BONNES
-        if(recupNbreGroupe <= 1  || recupNbreGroupe >= 13 || isNaN(recupNbreGroupe)){
-            // SI C'EST PAS BON, ALORS MESSAGE D'ERREUR
-            document.querySelector("#result").innerHTML = `<p>Merci de bien vouloir saisir <strong>un chiffre</strong> entre <strong>2 et 12</strong></p>`;
-        }
-        //* VERIFIER SI LA TAILLE DES GROUPES EST DIVISIBLE PAR LE NOMBRE D'APPRENANTS (pour un nombre inégal de membres des groupes)
-        else if(nbre % recupNbreGroupe === 0){ // si le reste de la division (modulo) du nombre d'élèves total divisé par le nombre d'élèves souhaité par groupe = zéro, on peut faire des groupes égaux en nombre d'élèves
-            // ALORS J'AFFICHE UN MESSAGE
-            document.querySelector("#result").innerHTML = `<p>Comme il y a ${nbre} élèves. En faisant des groupes de <strong>${recupNbreGroupe} personnes</strong>, il faudra faire <strong>${combienDeGroupes} groupes</strong>.</p>`;
-            // ET J'APPLIQUE LA FONCTION DEFINIE PLUS HAUT
-            affichageGroupes(combienDeGroupes, recupNbreGroupe);
-        }
-        //* DANS LE CAS DE 5 PERSONNES PAR GROUPE (4 groupes de 5 pers. + 1 groupe de 4 pers.)
-        else if(recupNbreGroupe === 5){
-            let reste = nbre % recupNbreGroupe;
-            document.querySelector("#result").innerHTML = `<p>Comme il y a ${nbre} élèves. En faisant des groupes de <strong>${recupNbreGroupe} personnes</strong>, il faudra faire <strong>${combienDeGroupes} groupes</strong> + 1 groupe de <strong>${reste} personnes</strong>.</p>`;
-            // ET J'APPLIQUE LA FONCTION DEFINIE PLUS HAUT
-            affichageGroupes(combienDeGroupes, recupNbreGroupe);
-            // ET J'APPLIQUE A NOUVEAU LA FONCTION POUR GENERER 1 GROUPE DE 4 PERSONNES QUI S'APPELLERA "Groupe 5"
-            affichageGroupes(1, 4, 5);
-        }
-        //* DANS LE CAS DE 7 PERSONNES PAR GROUPE (alors il vaut mieux faire des groupes de 8 personnes ^^)
-        else if(recupNbreGroupe === 7){
-            let reste = nbre % recupNbreGroupe;
-            document.querySelector("#result").innerHTML = `<p>Comme il y a ${nbre} élèves. En faisant des groupes de <strong>${recupNbreGroupe} personnes</strong>, il faudra faire <strong>${combienDeGroupes} groupes</strong> + 1 groupe de <strong>${reste} personnes</strong>.</p><p>Il sera plus pertinent de faire des groupes de <strong>8 personnes</strong> :-)</p>`;
-        }
-        //* DANS LE CAS DE +10 PERSONNES PAR GROUPE (alors il vaut mieux faire 2 groupes de 12 personnes ^^)
-        else if(recupNbreGroupe >= 10){
-            let reste = nbre % recupNbreGroupe;
-            document.querySelector("#result").innerHTML = `<p>Comme il y a ${nbre} élèves. En faisant des groupes de <strong>${recupNbreGroupe} personnes</strong>, il faudra faire <strong>${combienDeGroupes} groupes</strong> + 1 groupe de <strong>${reste} personnes</strong>.</p><p>Il sera plus pertinent de faire 2 groupes de <strong>12 personnes</strong> :-)</p>`;
-        }
-        //*  DANS LE CAS DE 9 PERSONNES PAR GROUPE (2 groupes de 9 pers. + 1 groupe de 6 pers.)
-        else if(recupNbreGroupe === 9){
-            let reste = nbre % recupNbreGroupe;
-            document.querySelector("#result").innerHTML = `<p>Comme il y a ${nbre} élèves. En faisant des groupes de <strong>${recupNbreGroupe} personnes</strong>, il faudra faire <strong>${combienDeGroupes} groupes</strong> + un groupe de <strong>${reste} personnes</strong>.</p>`;
-            // ET J'APPLIQUE LA FONCTION DEFINIE PLUS HAUT
-            affichageGroupes(combienDeGroupes, recupNbreGroupe);
-            // ET J'APPLIQUE A NOUVEAU LA FONCTION POUR GENERER 1 GROUPE DE 6 PERSONNES QUI S'APPELLERA "Groupe 3"
-            affichageGroupes(1, 6, 3);
-        }
+    // VARIABLE CONTENANT LE NOMBRE DE GROUPE CALCULE SELON LE NOMBRE D'ELEVES TOTAL DIVISE PAR LE NOMBRE D'ELEVES SOUHAITES DANS LE GROUPE PAR L'UTILISATEUR (input dans le HTML)
+    const combienDeGroupes = (Math.floor(nbre / recupNbreGroupe));
+
+    // je stocke l'emplacement où j'écrirais le résultat de la fonction groupe()
+    const monResultat = document.querySelector("#result");
+    
+    //* JE VERIFIE QUE LES VALEURS SAISIES SONT BONNES
+    if(recupNbreGroupe <= 1  || recupNbreGroupe >= 13 || isNaN(recupNbreGroupe)){
+        // SI C'EST PAS BON, ALORS MESSAGE D'ERREUR
+        monResultat.innerHTML = `<p>Merci de bien vouloir saisir <strong>un chiffre</strong> entre <strong>2 et 12</strong></p>`;
     }
-    groupe(); // on applique la fonction "groupe()"
-})
+    //* VERIFIER SI LA TAILLE DES GROUPES EST DIVISIBLE PAR LE NOMBRE D'APPRENANTS (pour un nombre inégal de membres des groupes)
+    else if(nbre % recupNbreGroupe === 0){ // si le reste de la division (modulo) du nombre d'élèves total divisé par le nombre d'élèves souhaité par groupe = zéro, on peut faire des groupes égaux en nombre d'élèves
+        // ALORS J'AFFICHE UN MESSAGE
+        monResultat.innerHTML = `<p>Comme il y a ${nbre} élèves. En faisant des groupes de <strong>${recupNbreGroupe} personnes</strong>, il faudra faire <strong>${combienDeGroupes} groupes</strong>.</p>`;
+        // ET J'APPLIQUE LA FONCTION DEFINIE PLUS HAUT
+        affichageGroupes(combienDeGroupes, recupNbreGroupe);
+    }
+    //* DANS LE CAS DE 5 PERSONNES PAR GROUPE (4 groupes de 5 pers. + 1 groupe de 4 pers.)
+    else if(recupNbreGroupe === 5){
+        let reste = nbre % recupNbreGroupe;
+        monResultat.innerHTML = `<p>Comme il y a ${nbre} élèves. En faisant des groupes de <strong>${recupNbreGroupe} personnes</strong>, il faudra faire <strong>${combienDeGroupes} groupes</strong> + 1 groupe de <strong>${reste} personnes</strong>.</p>`;
+        // ET J'APPLIQUE LA FONCTION DEFINIE PLUS HAUT
+        affichageGroupes(combienDeGroupes, recupNbreGroupe);
+        // ET J'APPLIQUE A NOUVEAU LA FONCTION POUR GENERER 1 GROUPE DE 4 PERSONNES QUI S'APPELLERA "Groupe 5"
+        affichageGroupes(1, 4, 5);
+    }
+    //* DANS LE CAS DE 7 PERSONNES PAR GROUPE (alors il vaut mieux faire des groupes de 8 personnes ^^)
+    else if(recupNbreGroupe === 7){
+        let reste = nbre % recupNbreGroupe;
+        monResultat.innerHTML = `<p>Comme il y a ${nbre} élèves. En faisant des groupes de <strong>${recupNbreGroupe} personnes</strong>, il faudra faire <strong>${combienDeGroupes} groupes</strong> + 1 groupe de <strong>${reste} personnes</strong>.</p><p>Il sera plus pertinent de faire des groupes de <strong>8 personnes</strong> :-)</p>`;
+    }
+    //* DANS LE CAS DE +10 PERSONNES PAR GROUPE (alors il vaut mieux faire 2 groupes de 12 personnes ^^)
+    else if(recupNbreGroupe >= 10){
+        let reste = nbre % recupNbreGroupe;
+        monResultat.innerHTML = `<p>Comme il y a ${nbre} élèves. En faisant des groupes de <strong>${recupNbreGroupe} personnes</strong>, il faudra faire <strong>${combienDeGroupes} groupes</strong> + 1 groupe de <strong>${reste} personnes</strong>.</p><p>Il sera plus pertinent de faire 2 groupes de <strong>12 personnes</strong> :-)</p>`;
+    }
+    //*  DANS LE CAS DE 9 PERSONNES PAR GROUPE (2 groupes de 9 pers. + 1 groupe de 6 pers.)
+    else if(recupNbreGroupe === 9){
+        let reste = nbre % recupNbreGroupe;
+        monResultat.innerHTML = `<p>Comme il y a ${nbre} élèves. En faisant des groupes de <strong>${recupNbreGroupe} personnes</strong>, il faudra faire <strong>${combienDeGroupes} groupes</strong> + un groupe de <strong>${reste} personnes</strong>.</p>`;
+        // ET J'APPLIQUE LA FONCTION DEFINIE PLUS HAUT
+        affichageGroupes(combienDeGroupes, recupNbreGroupe);
+        // ET J'APPLIQUE A NOUVEAU LA FONCTION POUR GENERER 1 GROUPE DE 6 PERSONNES QUI S'APPELLERA "Groupe 3"
+        affichageGroupes(1, 6, 3);
+    }
+}
+
+// Quand je clique sur le bouton pour générer des groupes en récupérant le chiffre saisi dans l'input
+recupBouton.addEventListener("click", groupe); // on applique la fonction "groupe()"
+
 
 //* fonction pour recharger la page
 const boutonReload = document.querySelector("#reload");
